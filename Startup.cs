@@ -35,6 +35,7 @@ namespace AspNetCoreTodo
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<ITodoItemService, FakeTodoItemService>();
 
             services.AddMvc();
         }
