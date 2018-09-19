@@ -38,5 +38,22 @@ namespace AspNetCoreTodo.Services
 
             return savaResult == 1;
         }
+
+        public async Task<bool> MarkDoneAsync(Guid id)
+        {
+            var item = await _context.Items
+            .Where(x => x.Id == id).SingleOrDefaultAsync();
+
+            if(item == null)
+            {
+                return false;
+            }
+
+            item.IsDone = true;
+            
+            var savaResult = await _context.SaveChangesAsync();
+
+            return savaResult == 1;
+        }
     }
 }
