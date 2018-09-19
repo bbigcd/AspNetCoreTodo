@@ -35,7 +35,14 @@ namespace AspNetCoreTodo
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddTransient<ITodoItemService, FakeTodoItemService>();
+            // services.AddTransient<ITodoItemService, FakeTodoItemService>();
+            
+            /*
+            AddScoped 会以 scoped 的生命周期把你的服务添加到容器里。
+            这意味着每次 web 请求中，一个 TodoItemService 类的新实例就会被创建出来。
+            这对于那些跟数据库打交道的类来说，是必要的。
+            */
+            services.AddScoped<ITodoItemService, TodoItemService>();
 
             services.AddMvc();
         }
